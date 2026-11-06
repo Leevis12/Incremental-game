@@ -1,0 +1,230 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(12, [col-start] 1fr);
+  gap: 1px;
+}
+
+body {
+    background-color: rgb(0, 0, 0);
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    color: white;
+}
+
+#rock {
+    background-color: gray;
+    border: solid 2px black;
+    border-radius: 120px;
+    height: 120px;
+    width: 120px;
+    transition: border 0.5s;
+    margin-top: 50px;
+}
+
+#rock:hover {
+    border-color: rgb(119, 217, 230);
+}
+
+#statsAndCurrencies {
+    background-color: rgb(51, 51, 63);
+    grid-column: 1 / 5;
+}
+
+#collection {
+    background-color: rgb(48, 47, 47);
+    grid-column: 1 / 5;
+}
+
+#resets {
+    background-color: rgb(24, 24, 24);
+    grid-column: 5 / 13;
+}
+
+#top {
+    background-color: brown;
+    grid-column: 1 / 13;
+}
+
+#shop {
+    background-color: rgb(24, 24, 24);
+    grid-column: 5 / 13;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    background-color: rgb(37, 37, 37);
+    border: solid 1px black;
+    border-radius: 5px;
+    width: 80%;
+    padding: 3px;
+    margin: auto;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+}
+
+.shopItem {
+    border: solid 1px black;
+    border-radius: 10px;
+    background-color: rgb(37, 37, 37);
+    width: 300px;
+    margin: 2.5px;
+    padding: 0px;
+    height: 100px;
+    text-shadow: 1px 1px 2px rgb(0, 0, 0);
+    transition: border 0.3s, box-shadow 0.3s;
+    display: inline-block;
+}
+
+.shopItem img {
+    position: relative;
+    right: 0px;
+    display: inline-block;
+}
+
+.shopItem.hide {
+    display: none;
+}
+
+.priceTag {
+    display: inline-flex;
+    align-items: center;
+    margin: 0;
+}
+
+.shopItem:hover {
+    border-color: rgb(97, 97, 250);
+    box-shadow: -2px 2px 3px rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+.upgradeCounter {
+    float: left;
+    background-color: rgb(88, 88, 88);
+    font-size: 50px;
+    margin: 2px;
+    padding: 15px;
+    width: 70px;
+    border-radius: 8px;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h2 {
+    text-shadow: 1px 1px 5px rgb(0, 0, 0);
+}
+
+.resetDiv {
+    border: solid 2px black;
+    border-radius: 10px;
+    display: inline-block;
+    width: 500px;
+    min-width: 300px;
+    height: 220px;
+    padding: 5px;
+    margin: 10px;
+    text-shadow: 1px 1px 5px rgb(0, 0, 0);
+}
+
+#reset1div {
+    background-color: rgb(131, 46, 46);
+}
+
+#reset2div {
+    background-color: rgb(131, 46, 46);
+}
+
+#reset3div {
+    background-color: rgb(189, 73, 38);
+}
+
+#reset4div {
+    background-color: rgb(197, 164, 154);
+}
+
+#reset5div {
+    background-color: rgb(221, 176, 28);
+}
+
+#resetH {
+    text-align: left;
+    margin: 8px;
+    display: block;
+}
+
+.resetButton {
+    background-color: rgb(19, 19, 19);
+    border: solid 1px black;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    width: 90%;
+    font-size: large;
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+.resetButton:hover {
+    border-color: rgb(97, 97, 250);
+    box-shadow: 0px 3px 3px rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+#chargeBar {
+    height: 25px;
+    background-color: rgb(32, 177, 177);
+    color: black;
+    border-radius: 5px;
+    transition: width 0.2s;
+    transition-timing-function: linear;
+}
+
+#charDiv {
+    background-color: rgb(87, 86, 86);
+    border: solid 1px black;
+    border-radius: 5px;
+    height: 25px;
+    width: 100%;
+    vertical-align: top;
+    margin: 0px;
+    display: flex;
+}
+
+.pic {
+    background-color: rgb(112, 112, 197);
+    border: solid 2px rgb(67, 67, 231);
+    border-radius: 30px;
+    padding: 3px;
+    float: left;
+    margin: 5px;
+    margin-right: 10px;
+}
+
+#bricksButton {
+    position: relative;
+    top: 28px;
+}
+
+#buildButton {
+    position: relative;
+    top: 10px;
+}
+
+#copperButton {
+    position: relative;
+    top: 25px;
+}
+
+#dum {
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: flex;
+    scrollbar-color: rgb(78, 77, 77) rgb(32, 31, 31);
+}

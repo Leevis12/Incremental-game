@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css">
+        <title>placeholder title</title>
+    </head>
+    <body>
+
+    <div class="container">
+
+        <nav id="top"><button>?</button></nav>
+
+        <div id="collection">
+            <div id="charDiv"><div id="chargeBar"></div></div>
+            <button id="rock">rock</button>
+        </div>
+
+        <div id="resets">
+            <h2 id="resetH">Resets:</h2>
+
+            <div id="dum">
+
+            <div id="reset1div" class="resetDiv">
+                <h3>Bricks</h3>
+                <p>Resets rocks, rock upgrades, stones and stone upgrades for bricks.<br>
+                    Bricks earned is based on current rocks and stones</p>
+                <button id="bricksButton" class="resetButton">requires 10 000 rocks made</button>
+            </div>
+            <div id="reset2div" class="resetDiv">
+                <h3>Build</h3>
+                <p>reset everything bricks does, as well as bricks and brick upgrades.
+                    Unlocks new resets and doubles rocks and energy stones permanently. 
+                    Can only be done once</p>
+                <button id="buildButton" class="resetButton">requires 10 000 bricks</button>
+            </div>
+            <div id="reset3div" class="resetDiv">
+                <h3>Copper</h3>
+                <p>resets everything build does for copper. Copper can be used for general upgrades.
+                    All 3 metals earned is based on rocks and stones. Better metals give less.
+                </p>
+                <button id="copperButton" class="resetButton">0 copper</button>
+            </div>
+            <div id="reset4div" class="resetDiv">
+                <h3>Silver</h3>
+                <p>resets everything build does for silver. Silver can be used for large buffs.</p>
+                <button id="silverButton" class="resetButton">0 silver</button>
+            </div>
+            <div id="reset5div" class="resetDiv">
+                <h3>Gold</h3>
+                <p>resets everything build does for gold. Gold can be used for buying automation upgrades.</p>
+                <button id="goldButton" class="resetButton">0 gold</button>
+            </div>
+
+            </div>
+            
+        </div>
+
+        <div id="statsAndCurrencies">
+            <h2>Currencies:</h2>
+            <ul>
+                <li><img src="images/rock.png" class="pic"><p id="currency1">rocks: 0</p></li>
+                <li><img src="images/stone.png" class="pic"><p id="currency2">stones: 0</p></li>
+                <li><img src="Images/energystone.png" class="pic"><p id="currency3">energy stones: 0</p></li>
+                <li><img src="Images/brick.png" class="pic"><p id="currency4">bricks: 0</p></li>
+            </ul>
+            <h2>Stats:</h2>
+            <ul>
+                <li id="stat1">rock value: 1</li>
+                <li id="stat2">stone chance: 1%</li>
+                <li id="stat3">stone value: 1</li>
+                <li id="stat4">autocollect amount: 0</li>
+                <li id="stat5">boost duration: 5s</li>
+                <li id="stat6">boost buff: 2x</li>
+            </ul>
+        </div>
+
+        <div id="shop">
+            <h2>Shop:</h2>
+            <div class="shopItem" id="upgrade1">
+                <p class="upgradeCounter" id="up1counter">0</p>
+                <p>Rock value 1.2x</p>
+                <div class="priceTag"><img src="images/rock.png" class="pic"><p id="priceTag1">10 rocks</p></div>
+            </div>
+            <div class="shopItem" id="upgrade2">
+                <p class="upgradeCounter" id="up2counter">0</p>
+                <p>Stone chance +1%</p>
+                <div class="priceTag"><img src="images/rock.png" class="pic"><p id="priceTag2">100 rocks</p></div>
+            </div>
+            <div class="shopItem" id="upgrade3">
+                <p class="upgradeCounter" id="up3counter">0</p>
+                <p>Stone value 1.5x</p>
+                <div class="priceTag"><img src="images/rock.png" class="pic"><p id="priceTag3">50 rocks</p></div>
+            </div>
+            <div class="shopItem" id="upgrade4">
+                <p class="upgradeCounter" id="up4counter">0</p>
+                <p>autocollect amount +1</p>
+                <div class="priceTag"><img src="images/stone.png" class="pic"><p id="priceTag4">2 stones</p></div>
+            </div>
+            <div class="shopItem" id="upgrade5">
+                <p class="upgradeCounter" id="up5counter">0</p>
+                <p>rock value 1.5x</p>
+                <div class="priceTag"><img src="images/stone.png" class="pic"><p id="priceTag5">5 stones</p></div>
+            </div>
+            <div class="shopItem" id="upgrade6">
+                <p class="upgradeCounter" id="up6counter">0</p>
+                <p>bricks 1.5x</p>
+                <div class="priceTag"><img src="images/stone.png" class="pic"><p id="priceTag6">20 stones</p></div>
+            </div>
+            <div class="shopItem" id="upgrade7">
+                <p class="upgradeCounter" id="up7counter">0</p>
+                <p>boost duration + 0.1s</p>
+                <div class="priceTag"><img src="images/energystone.png" class="pic"><p id="priceTag7">1 energy stone</p></div>
+            </div>
+            <div class="shopItem" id="upgrade8">
+                <p class="upgradeCounter" id="up8counter">0</p>
+                <p>boost buff + 0.1x</p>
+                <div class="priceTag"><img src="images/energystone.png" class="pic"><p id="priceTag8">2 energy stones</p></div>
+            </div>
+            <div class="shopItem" id="upgrade9">
+                <p class="upgradeCounter" id="up9counter">0</p>
+                <p>Rock value 1.5x</p>
+                <div class="priceTag"><img src="Images/brick.png" class="pic"><p id="priceTag9">50 bricks</p></div>
+            </div>
+            <div class="shopItem" id="upgrade10">
+                <p class="upgradeCounter" id="up10counter">0</p>
+                <p>stone value 1.5x</p>
+                <div class="priceTag"><img src="Images/brick.png" class="pic"><p id="priceTag10">100 bricks</p></div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div id="upgradeInfo"></div>
+
+    </body>
+
+    <script src="scripts.js"></script>
+</html>
