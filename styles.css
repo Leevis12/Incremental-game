@@ -12,6 +12,55 @@ body {
     overflow-y: hidden;
 }
 
+h2 {
+    text-shadow: 1px 1px 5px rgb(0, 0, 0);
+}
+
+/*top bar styles*/
+#top {
+    background-color: brown;
+    grid-column: 1 / 13;
+}
+
+#helpB {
+    background-color: rgb(253, 253, 253);
+    border: solid 2px black;
+    border-radius: 6px;
+    margin: 2px;
+    font-size: 20px;
+    transition: background-color 0.3s;
+}
+
+#helpB:hover {
+    background-color: rgb(160, 160, 160);
+}
+
+/*collection area styles*/
+#collection {
+    background-image: linear-gradient(to bottom, rgb(59, 59, 59), rgb(27, 27, 27));
+    grid-column: 1 / 5;
+}
+
+#charDiv {
+    background-color: rgb(87, 86, 86);
+    border: solid 1px black;
+    border-radius: 5px;
+    height: 25px;
+    width: 99.5%;
+    vertical-align: top;
+    margin: 0px;
+    display: flex;
+}
+
+#chargeBar {
+    height: 25px;
+    background-color: rgb(32, 177, 177);
+    color: black;
+    border-radius: 5px;
+    transition: width 0.2s;
+    transition-timing-function: linear;
+}
+
 #rock {
     background-color: gray;
     border: solid 2px black;
@@ -31,6 +80,8 @@ body {
     background-color: rgb(92, 92, 92);
 }
 
+
+/* stats and currencies styles*/
 #statsAndCurrencies {
     background-image: linear-gradient(to bottom, rgb(56, 72, 78), rgb(26, 33, 43));
     grid-column: 1 / 5;
@@ -38,51 +89,6 @@ body {
     overflow-x: hidden;
     scrollbar-color: rgb(78, 77, 77) rgb(32, 31, 31);
     max-height: 63vh;
-}
-
-#collection {
-    background-image: linear-gradient(to bottom, rgb(59, 59, 59), rgb(27, 27, 27));
-    grid-column: 1 / 5;
-}
-
-#chargeBar {
-    height: 25px;
-    background-color: rgb(32, 177, 177);
-    color: black;
-    border-radius: 5px;
-    transition: width 0.2s;
-    transition-timing-function: linear;
-}
-
-#resets {
-    background-color: rgb(24, 24, 24);
-    grid-column: 5 / 13;
-}
-
-#shop {
-    background-color: rgb(24, 24, 24);
-    grid-column: 5 / 13;
-    overflow-y: auto;
-    scrollbar-color: rgb(78, 77, 77) rgb(32, 31, 31);
-    max-height: 62vh;
-}
-
-#top {
-    background-color: brown;
-    grid-column: 1 / 13;
-}
-
-#helpB {
-    background-color: rgb(253, 253, 253);
-    border: solid 2px black;
-    border-radius: 6px;
-    margin: 2px;
-    font-size: 20px;
-    transition: background-color 0.3s;
-}
-
-#helpB:hover {
-    background-color: rgb(160, 160, 160);
 }
 
 ul {
@@ -104,73 +110,27 @@ li {
     align-items: center;
 }
 
-.shopItem {
-    border: solid 1px black;
-    border-radius: 10px;
-    background-color: rgb(37, 37, 37);
-    width: 300px;
-    margin: 2.5px;
-    padding: 0px;
-    height: 100px;
-    text-shadow: 1px 1px 2px rgb(0, 0, 0);
-    transition: border 0.3s, box-shadow 0.3s;
-    display: inline-block;
-}
-
-.shopItem img {
-    position: relative;
-    right: 0px;
-    display: inline-block;
-}
-
-.shopItem.hide {
-    display: none;
-}
-
-.priceTag {
-    display: inline-flex;
-    align-items: center;
-    margin: 0;
-}
-
-.shopItem:hover {
-    border-color: rgb(97, 97, 250);
-    box-shadow: -2px 2px 3px rgb(0, 0, 0);
-    cursor: pointer;
-}
-
-.shopItem:active {
-    background-color: rgb(27, 27, 27);
-}
-
-.upgradeCounter {
-    float: left;
-    background-color: rgb(88, 88, 88);
-    font-size: 50px;
-    margin: 2px;
-    padding: 15px;
-    width: 70px;
-    border-radius: 8px;
-    height: 66px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-h2 {
-    text-shadow: 1px 1px 5px rgb(0, 0, 0);
+/*resets styles*/
+#resets {
+    background-color: rgb(24, 24, 24);
+        background-image: linear-gradient(to right, rgb(39, 43, 44), rgb(24, 24, 24));
+    grid-column: 5 / 13;
 }
 
 .resetDiv {
     border: solid 2px black;
     border-radius: 10px;
     display: inline-block;
-    width: 500px;
+    width: 300px;
     min-width: 300px;
     height: 220px;
     padding: 5px;
     margin: 10px;
     text-shadow: 1px 1px 5px rgb(0, 0, 0);
+}
+
+.resetDiv.hide {
+    display: none;
 }
 
 #reset1div {
@@ -216,28 +176,8 @@ h2 {
     cursor: pointer;
 }
 
-
-#charDiv {
-    background-color: rgb(87, 86, 86);
-    border: solid 1px black;
-    border-radius: 5px;
-    height: 25px;
-    width: 100%;
-    vertical-align: top;
-    margin: 0px;
-    display: flex;
-}
-
-.pic {
-    background-color: rgb(112, 112, 197);
-    border: solid 2px rgb(67, 67, 231);
-    border-radius: 30px;
-    padding: 3px;
-    float: left;
-    margin: 5px;
-    margin-right: 10px;
-}
-
+/*positioning for reset buttons*/
+/*there might be a better way to do this but idk*/
 #bricksButton {
     position: relative;
     top: 28px;
@@ -250,7 +190,17 @@ h2 {
 
 #copperButton {
     position: relative;
-    top: 25px;
+    top: -6px;
+}
+
+#silverButton {
+    position: relative;
+    top: 64px;
+}
+
+#goldButton {
+    position: relative;
+    top: 45px;
 }
 
 #resetButtons {
@@ -258,4 +208,118 @@ h2 {
     overflow-y: hidden;
     display: flex;
     scrollbar-color: rgb(78, 77, 77) rgb(32, 31, 31);
+}
+
+/*shop styles*/
+#shop {
+    background-image: linear-gradient(to bottom, rgb(36, 45, 48), rgb(24, 24, 24));
+    grid-column: 5 / 13;
+    overflow-y: auto;
+    scrollbar-color: rgb(78, 77, 77) rgb(32, 31, 31);
+    max-height: 62vh;
+}
+
+.shopItem {
+    border: solid 1px black;
+    border-radius: 10px;
+    background-color: rgb(37, 37, 37);
+    width: 300px;
+    margin: 2.5px;
+    padding: 0px;
+    height: 100px;
+    text-shadow: 1px 1px 2px rgb(0, 0, 0);
+    transition: border 0.3s, box-shadow 0.3s;
+    display: inline-block;
+}
+
+.shopItem:active {
+    background-color: rgb(27, 27, 27);
+}
+
+.shopItem img {
+    position: relative;
+    right: 0px;
+    display: inline-block;
+}
+
+.shopItem.hide {
+    display: none;
+}
+
+.shopItem:hover {
+    border-color: rgb(97, 97, 250);
+    box-shadow: -2px 2px 3px rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+.priceTag {
+    display: inline-flex;
+    align-items: center;
+    margin: 0;
+}
+
+.upgradeCounter {
+    float: left;
+    background-color: rgb(88, 88, 88);
+    font-size: 50px;
+    margin: 2px;
+    padding: 15px;
+    width: 70px;
+    border-radius: 8px;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*styling for all currency images*/
+.pic {
+    background-color: rgb(112, 112, 197);
+    border: solid 2px rgb(67, 67, 231);
+    border-radius: 30px;
+    padding: 3px;
+    float: left;
+    margin: 5px;
+    margin-right: 10px;
+}
+
+/*tutorial styles*/
+#tutorial {
+    display: block;
+    visibility: hidden;
+    background-image: linear-gradient(to bottom, rgb(51, 65, 70), rgb(22, 28, 36));
+    position: fixed;
+    top: 20px;
+    width: 80%;
+    min-width: fit-content;
+    height: 600px;
+    border: solid 3px black;
+    border-radius: 20px;
+    z-index: 1;
+}
+
+#overlay {
+    visibility: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.63);
+    z-index: 1;
+}
+
+#tCloseB {
+    background-color: rgba(255, 255, 255, 0);
+    font-size: x-large;
+    color: white;
+    transition: text-shadow 0.2s;
+    border: none;
+    margin: 5px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+
+#tCloseB:hover {
+    cursor: pointer;
+    text-shadow: 0px 0px 10px rgb(0, 0, 0);;
 }

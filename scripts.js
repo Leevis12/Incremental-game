@@ -2,11 +2,22 @@ const rock = document.getElementById("rock");
 const upgradeInfo = document.getElementById("upgradeInfo");
 const chargeBar = document.getElementById("chargeBar");
 const charDiv = document.getElementById("charDiv");
+const tutorial = document.getElementById("tutorial");
+const overlay = document.getElementById("overlay");
+const rocknum = document.getElementById("rockNum");
 
 const currency1 = document.getElementById("currency1");
 const currency2 = document.getElementById("currency2");
 const currency3 = document.getElementById("currency3");
 const currency4 = document.getElementById("currency4");
+const currency5 = document.getElementById("currency5");
+const currency6 = document.getElementById("currency6");
+const currency7 = document.getElementById("currency7");
+
+const reset2div = document.getElementById("reset2div");
+const reset3div = document.getElementById("reset3div");
+const reset4div = document.getElementById("reset4div");
+const reset5div = document.getElementById("reset5div");
 
 const stat1 = document.getElementById("stat1");
 const stat2 = document.getElementById("stat2");
@@ -40,7 +51,28 @@ let boostDuration = 5000;
 let bricksUnlock = false;
 let build = false;
 
+let copper = 0;
+let copperValue = 0;
 
+let silver = 0;
+let silverValue = 0;
+
+let gold = 0;
+let goldValue = 0;
+
+// functions for opening and closing tutorial
+
+
+function openTutorial() {
+    tutorial.style.visibility= 'visible';
+    overlay.style.visibility= 'visible';
+}
+
+function closeTutorial() {
+    tutorial.style.visibility= 'hidden';
+    overlay.style.visibility= 'hidden';
+
+}
 
 // function for displaying large numbers better
 
@@ -75,11 +107,9 @@ function updateStoneValue() {
 rock.addEventListener("click", getRocks);
 
 function getRocks() {
-    if(stoneChance > 0) {
-        if(stoneChance >= Math.floor(Math.random() * 100) + 1) {
-            stones = stones + stoneValue;
-            currency2.innerHTML = "stones: " + abbreviate(stones);
-        }
+    if(stoneChance >= Math.floor(Math.random() * 100) + 1) {
+         stones = stones + stoneValue;
+         currency2.innerHTML = "stones: " + abbreviate(stones);
     }
     if(boost === false) {
         charge = charge + chargeAmount;
@@ -94,7 +124,10 @@ function getRocks() {
     
     rocksMade = rocksMade + rockValue;
     currency1.innerHTML = "rocks: " + abbreviate(rocks);
-    updateBricks()
+    updateBricks();
+    updateCopper();
+    updateSilver();
+    updateGold();
 }
 
 
@@ -159,7 +192,7 @@ function updateBricks() {
 // bricks reset
 
 function bricksReset() {
-    if(rocksMade > 10000) {
+    if(rocksMade >= 10000) {
         bricks = bricks + bricksValue;
         rockValue = 1;
         updateBuildButton();
@@ -170,6 +203,8 @@ function bricksReset() {
 
         upgrade9.classList.remove("hide");
         upgrade10.classList.remove("hide");
+        upgrade11.classList.remove("hide");
+        reset2div.classList.remove("hide");
     }
 }
 
@@ -195,9 +230,71 @@ function buildReset() {
         resetStones();
         resetBricks();
         buildButton.innerHTML = "Built"
+        reset3div.classList.remove("hide");
+        reset4div.classList.remove("hide");
+        reset5div.classList.remove("hide");
     }
 }
 
+// copper reset
+
+const copperButton = document.getElementById("copperButton");
+
+copperButton.addEventListener("click", copperReset);
+
+function updateCopper() {
+    copperValue = Math.floor(rocks / 1000) + Math.floor(stones / 100);
+    copperButton.innerHTML = abbreviate(copperValue) + " copper";
+}
+
+function copperReset() {
+    copper = copper + copperValue;
+    currency5.innerHTML = "copper: " + abbreviate(copper);
+    resetRocks();
+    resetStones();
+    resetBricks();
+    updateCopper();
+}
+
+// silver reset
+
+const silverButton = document.getElementById("silverButton");
+
+silverButton.addEventListener("click", silverReset);
+
+function updateSilver() {
+    silverValue = Math.floor(rocks / 10000) + Math.floor(stones / 1000);
+    silverButton.innerHTML = abbreviate(silverValue) + " silver";
+}
+
+function silverReset() {
+    silver = silver + silverValue;
+    currency6.innerHTML = "silver: " + abbreviate(silver);
+    resetRocks();
+    resetStones();
+    resetBricks();
+    updateSilver();
+}
+
+// gold reset
+
+const goldButton = document.getElementById("goldButton");
+
+goldButton.addEventListener("click", goldReset);
+
+function updateGold() {
+    goldValue = Math.floor(rocks / 100000) + Math.floor(stones / 10000);
+    goldButton.innerHTML = abbreviate(goldValue) + " gold";
+}
+
+function goldReset() {
+    gold = gold + goldValue;
+    currency7.innerHTML = "gold: " + abbreviate(gold);
+    resetRocks();
+    resetStones();
+    resetBricks();
+    updateGold();
+}
 
 // individual currency resets
 
@@ -278,6 +375,7 @@ function resetBricks() {
 
 
 // upgrade naming: up(stat)(currency for upgrade);
+// early upgrades do not follow this rule
 
 // upgrade 1 rock value x1.2
 
@@ -496,7 +594,7 @@ let rockValueM3 = 1;
 
 function upRockValueBrick() {
     if(bricks >= upgrade9price) {
-        rockValueM3 = rockValueM3 + 0.5
+        rockValueM3 = rockValueM3 + 0.5;
         bricks = bricks - upgrade9price;
         upgrade9price = upgrade9price * 2.5;
         up9count++;
@@ -520,7 +618,7 @@ let stoneValueM2 = 1;
 
 function upStoneValueBrick() {
     if(bricks >= upgrade10price) {
-        stoneValueM2 = stoneValueM2 + 0.5
+        stoneValueM2 = stoneValueM2 + 0.5;
         bricks = bricks - upgrade10price;
         upgrade10price = upgrade10price * 2.5;
         up10count++;
@@ -532,14 +630,72 @@ function upStoneValueBrick() {
 
 // upgrade 11 copper 1.2x
 
+const upgrade11 = document.getElementById("upgrade11");
+const priceTag11 = document.getElementById("priceTag11");
+const up11counter = document.getElementById("up11counter");
+
+upgrade11.addEventListener("click", upCopperValueBrick);
+
+let upgrade11price = 500;
+let up11count = 0;
+let copperValueM1 = 1;
+
+function upCopperValueBrick() {
+    if(bricks >= upgrade11price) {
+        copperValueM1 = copperValueM1 + 0.2;
+        bricks = bricks - upgrade11price;
+        upgrade11price = upgrade11price * 1.5;
+        up11count++
+        updateCopper();
+        currency4.innerHTML = "bricks: " + abbreviate(bricks);
+        up11counter.innerHTML = up10count;
+    }
+}
+
+// copper upgrades:
+
+// upgrade 12 silver 1.2x
+
+// upgrade 13 gold 1.2x
+
+// upgrade 14 rocks 1.2x
+
+// upgrade 15 stones 1.2x
+
+// upgrade 16 bricks 1.2x
+
+// silver upgrades:
+
+// upgrade 17 rocks x2
+
+// upgrade 18 stones x2
+
+// upgrade 19 boost progress x2 max 1
+
+// gold upgrades:
+
+// upgrade 20 keep autocollect
+
+// upgrade 21 rock autobuy
+
+// upgrade 22 stone autobuy
+
+// upgrade 23 brick autobuy
+
+// upgrade 24 brick generation
+
+// upgrade 25 all metals generation (super expensive)
 
 
-
-// hide upgrades and resets
-// maybe use html hide thingy for this
+// hide locked upgrades and resets
 function hideUpgrades() {
     upgrade9.classList.add("hide");
     upgrade10.classList.add("hide");
+    upgrade11.classList.add("hide");
+    reset2div.classList.add("hide");
+    reset3div.classList.add("hide");
+    reset4div.classList.add("hide");
+    reset5div.classList.add("hide");
 }
 
 hideUpgrades();
