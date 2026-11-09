@@ -88,7 +88,7 @@ h2 {
     overflow-y: auto;
     overflow-x: hidden;
     scrollbar-color: rgb(78, 77, 77) rgb(32, 31, 31);
-    max-height: 63vh;
+    height: 63vh;
 }
 
 ul {
@@ -109,6 +109,7 @@ li {
     display: flex;
     align-items: center;
 }
+
 
 /*resets styles*/
 #resets {
@@ -216,7 +217,7 @@ li {
     grid-column: 5 / 13;
     overflow-y: auto;
     scrollbar-color: rgb(78, 77, 77) rgb(32, 31, 31);
-    max-height: 62vh;
+    height: 63vh;
 }
 
 .shopItem {
@@ -274,8 +275,8 @@ li {
 
 /*styling for all currency images*/
 .pic {
-    background-color: rgb(112, 112, 197);
-    border: solid 2px rgb(67, 67, 231);
+    background-color: rgb(152, 152, 221);
+    border: solid 2px rgb(112, 112, 226);
     border-radius: 30px;
     padding: 3px;
     float: left;

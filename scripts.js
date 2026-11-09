@@ -14,6 +14,11 @@ const currency5 = document.getElementById("currency5");
 const currency6 = document.getElementById("currency6");
 const currency7 = document.getElementById("currency7");
 
+const c1li = document.getElementById("c1li");
+const c2li = document.getElementById("c2li");
+const c3li = document.getElementById("c3li");
+const c4li = document.getElementById("c4li");
+
 const reset2div = document.getElementById("reset2div");
 const reset3div = document.getElementById("reset3div");
 const reset4div = document.getElementById("reset4div");
@@ -83,6 +88,8 @@ function abbreviate(num) {
         return (num / 1000).toFixed(1) + "K";
     } else if(num >= 1000000 && num < 1000000000) {
         return (num / 1000000).toFixed(1) +"M"
+    } else if(num >= 1000000000 && num < 1000000000000) {
+        return (num / 1000000000).toFixed(1) +"B"
     } else {
         return num.toPrecision(2);
     }
@@ -92,12 +99,12 @@ function abbreviate(num) {
 // value updates
 
 function updateRockValue() {
-    rockValue = 1 * buildM * rockValueM1 * rockValueM2 * rockValueM3;
+    rockValue = 1 * buildM * rockValueM1 * rockValueM2 * rockValueM3 * rockValueM4;
     stat1.innerHTML = "rock value: " + abbreviate(rockValue);
 }
 
 function updateStoneValue() {
-    stoneValue = 1 * stoneValueM1 * stoneValueM2;
+    stoneValue = 1 * stoneValueM1 * stoneValueM2 * stoneValueM3;
     stat3.innerHTML = "stone value: " + abbreviate(stoneValue);
 }
 
@@ -183,7 +190,7 @@ function updateBricks() {
     if(rocksMade >= 10000) {
         bricksUnlock = true;
     }
-    bricksValue = (Math.floor(rocks / 100) + Math.floor(stones / 10)) * brickValueM1;
+    bricksValue = (Math.floor(rocks / 100) + Math.floor(stones / 10)) * brickValueM1 * brickValueM2;
     if(bricksUnlock === true) {
         bricksButton.innerHTML = abbreviate(bricksValue) + " bricks";
     }
@@ -205,6 +212,7 @@ function bricksReset() {
         upgrade10.classList.remove("hide");
         upgrade11.classList.remove("hide");
         reset2div.classList.remove("hide");
+        c1li.style.display = 'flex';
     }
 }
 
@@ -217,7 +225,7 @@ buildButton.addEventListener("click", buildReset)
 let buildM = 1;
 
 function updateBuildButton() {
-    if(bricks >= 10000) {
+    if(bricks >= 100000) {
         buildButton.innerHTML = "Build";
     }
 }
@@ -230,9 +238,27 @@ function buildReset() {
         resetStones();
         resetBricks();
         buildButton.innerHTML = "Built"
+
         reset3div.classList.remove("hide");
         reset4div.classList.remove("hide");
         reset5div.classList.remove("hide");
+        c2li.style.display = 'flex';
+        c3li.style.display = 'flex';
+        c4li.style.display = 'flex';
+        upgrade12.classList.remove("hide");
+        upgrade13.classList.remove("hide");
+        upgrade14.classList.remove("hide");
+        upgrade15.classList.remove("hide");
+        upgrade16.classList.remove("hide");
+        upgrade17.classList.remove("hide");
+        upgrade18.classList.remove("hide");
+        upgrade19.classList.remove("hide");
+        upgrade20.classList.remove("hide");
+        upgrade21.classList.remove("hide");
+        upgrade22.classList.remove("hide");
+        upgrade23.classList.remove("hide");
+        upgrade24.classList.remove("hide");
+        upgrade25.classList.remove("hide");
     }
 }
 
@@ -243,7 +269,7 @@ const copperButton = document.getElementById("copperButton");
 copperButton.addEventListener("click", copperReset);
 
 function updateCopper() {
-    copperValue = Math.floor(rocks / 1000) + Math.floor(stones / 100);
+    copperValue = Math.floor(rocks / 1000) + Math.floor(stones / 100) * copperValueM1;
     copperButton.innerHTML = abbreviate(copperValue) + " copper";
 }
 
@@ -263,7 +289,7 @@ const silverButton = document.getElementById("silverButton");
 silverButton.addEventListener("click", silverReset);
 
 function updateSilver() {
-    silverValue = Math.floor(rocks / 10000) + Math.floor(stones / 1000);
+    silverValue = Math.floor(rocks / 10000) + Math.floor(stones / 1000) * silverValueM1;
     silverButton.innerHTML = abbreviate(silverValue) + " silver";
 }
 
@@ -283,7 +309,7 @@ const goldButton = document.getElementById("goldButton");
 goldButton.addEventListener("click", goldReset);
 
 function updateGold() {
-    goldValue = Math.floor(rocks / 100000) + Math.floor(stones / 10000);
+    goldValue = Math.floor(rocks / 100000) + Math.floor(stones / 10000) * goldValueM1;
     goldButton.innerHTML = abbreviate(goldValue) + " gold";
 }
 
@@ -330,13 +356,15 @@ function resetStones() {
     stones = 0;
     currency2.innerHTML = "stones: " + stones;
 
-    upgrade4price = 2;
-    up4count = 0;
-    autocollectAmount = 0;
-    priceTag4.innerHTML = abbreviate(upgrade4price) + " stones";
-    stat4.innerHTML = "autocollect amount: " + autocollectAmount;
-    up4counter.innerHTML = up4count;
-
+    if(keepAutoCollect === false) {
+        upgrade4price = 2;
+        up4count = 0;
+        autocollectAmount = 0;
+        priceTag4.innerHTML = abbreviate(upgrade4price) + " stones";
+        stat4.innerHTML = "autocollect amount: " + autocollectAmount;
+        up4counter.innerHTML = up4count;
+    }
+    
     upgrade5price = 5;
     up5count = 0;
     rockValueM2 = 1;
@@ -344,7 +372,7 @@ function resetStones() {
     up5counter.innerHTML = up5count;
 
     upgrade6price = 20;
-    up5count = 0;
+    up6count = 0;
     brickValueM1 = 1;
     priceTag6.innerHTML = abbreviate(upgrade6price) + " stones";
     up6counter.innerHTML = up6count;
@@ -364,10 +392,16 @@ function resetBricks() {
     up9counter.innerHTML = up9count;
 
     upgrade10price = 100;
-    up5count = 0;
+    up10count = 0;
     stoneValueM2 = 1;
     priceTag10.innerHTML = abbreviate(upgrade10price) + " bricks";
-    up9counter.innerHTML = up9count;
+    up10counter.innerHTML = up10count;
+
+    upgrade11price = 500;
+    up11count = 0;
+    copperValueM1 = 1;
+    priceTag11.innerHTML = abbreviate(upgrade11price) + " bricks";
+    up11counter.innerHTML = up11count;
 
     updateRockValue();
     updateBricks();
@@ -599,6 +633,7 @@ function upRockValueBrick() {
         upgrade9price = upgrade9price * 2.5;
         up9count++;
         updateRockValue();
+        priceTag9.innerHTML = abbreviate(upgrade9price) + " bricks";
         currency4.innerHTML = "bricks: " + abbreviate(bricks);
         up9counter.innerHTML = up9count;
     }
@@ -623,6 +658,7 @@ function upStoneValueBrick() {
         upgrade10price = upgrade10price * 2.5;
         up10count++;
         updateStoneValue();
+        priceTag10.innerHTML = abbreviate(upgrade10price) + " bricks";
         currency4.innerHTML = "bricks: " + abbreviate(bricks);
         up10counter.innerHTML = up10count;
     }
@@ -647,47 +683,421 @@ function upCopperValueBrick() {
         upgrade11price = upgrade11price * 1.5;
         up11count++
         updateCopper();
+        priceTag11.innerHTML = abbreviate(upgrade11price) + " bricks";
         currency4.innerHTML = "bricks: " + abbreviate(bricks);
-        up11counter.innerHTML = up10count;
+        up11counter.innerHTML = up11count;
     }
 }
 
 // copper upgrades:
 
-// upgrade 12 silver 1.2x
+// upgrade 12 rocks 1.2x
 
-// upgrade 13 gold 1.2x
+const upgrade12 = document.getElementById("upgrade12");
+const priceTag12 = document.getElementById("priceTag12");
+const up12counter = document.getElementById("up12counter");
 
-// upgrade 14 rocks 1.2x
+upgrade12.addEventListener("click", upRockValueCopper);
 
-// upgrade 15 stones 1.2x
+let upgrade12price = 10;
+let up12count = 0;
+let rockValueM4 = 1;
 
-// upgrade 16 bricks 1.2x
+function upRockValueCopper() {
+    if(copper >= upgrade12price) {
+        rockValueM4 = rockValueM4 + 0.2;
+        copper = copper - upgrade12price;
+        upgrade12price = upgrade12price * 1.5;
+        up12count++;
+        updateRockValue();
+        priceTag12.innerHTML = abbreviate(upgrade12price) + " copper";
+        currency5.innerHTML = "copper: " + abbreviate(copper);
+        up12counter.innerHTML = up12count;
+    }
+}
+
+// upgrade 13 stones 1.2x
+
+const upgrade13 = document.getElementById("upgrade13");
+const priceTag13 = document.getElementById("priceTag13");
+const up13counter = document.getElementById("up13counter");
+
+upgrade13.addEventListener("click", upStoneValueCopper);
+
+let upgrade13price = 20;
+let up13count = 0;
+let stoneValueM3 = 1;
+
+function upStoneValueCopper() {
+    if(copper >= upgrade13price) {
+        stoneValueM3 = stoneValueM3 + 0.2;
+        copper = copper - upgrade13price;
+        upgrade13price = upgrade13price * 1.5;
+        up13count++;
+        updateStoneValue();
+        priceTag13.innerHTML = abbreviate(upgrade13price) + " copper";
+        currency5.innerHTML = "copper: " + abbreviate(copper);
+        up13counter.innerHTML = up13count;
+    }
+}
+
+// upgrade 14 bricks 1.2x
+
+const upgrade14 = document.getElementById("upgrade14");
+const priceTag14 = document.getElementById("priceTag14");
+const up14counter = document.getElementById("up14counter");
+
+upgrade14.addEventListener("click", upBrickValueCopper);
+
+let upgrade14price = 50;
+let up14count = 0;
+let brickValueM2 = 1;
+
+function upBrickValueCopper() {
+    if(copper >= upgrade14price) {
+        brickValueM2 = brickValueM2 + 0.2;
+        copper = copper - upgrade14price;
+        upgrade14price = upgrade14price * 1.5;
+        up14count++;
+        updateBricks();
+        priceTag14.innerHTML = abbreviate(upgrade14price) + " copper";
+        currency5.innerHTML = "copper: " + abbreviate(copper);
+        up14counter.innerHTML = up14count;
+    }
+}
+
+// upgrade 15 silver 1.2x
+
+const upgrade15 = document.getElementById("upgrade15");
+const priceTag15 = document.getElementById("priceTag15");
+const up15counter = document.getElementById("up15counter");
+
+upgrade15.addEventListener("click", upSilverValueCopper);
+
+let upgrade15price = 100;
+let up15count = 0;
+let silverValueM1 = 1;
+
+function upSilverValueCopper() {
+    if(copper >= upgrade15price) {
+        silverValueM1 = silverValueM1 + 0.2;
+        copper = copper - upgrade15price;
+        upgrade15price = upgrade15price * 1.5;
+        up15count++;
+        updateSilver();
+        priceTag15.innerHTML = abbreviate(upgrade15price) + " copper";
+        currency5.innerHTML = "copper: " + abbreviate(copper);
+        up15counter.innerHTML = up15count;
+    }
+}
+
+// upgrade 16 gold 1.2x
+
+const upgrade16 = document.getElementById("upgrade16");
+const priceTag16 = document.getElementById("priceTag16");
+const up16counter = document.getElementById("up16counter");
+
+upgrade16.addEventListener("click", upGoldValueCopper);
+
+let upgrade16price = 200;
+let up16count = 0;
+let goldValueM1 = 1;
+
+function upGoldValueCopper() {
+    if(copper >= upgrade16price) {
+        goldValueM1 = goldValueM1 + 0.2;
+        copper = copper - upgrade16price;
+        upgrade16price = upgrade16price * 1.5;
+        up16count++;
+        updateGold();
+        priceTag16.innerHTML = abbreviate(upgrade16price) + " copper";
+        currency5.innerHTML = "copper: " + abbreviate(copper);
+        up16counter.innerHTML = up16count;
+    }
+}
 
 // silver upgrades:
 
 // upgrade 17 rocks x2
 
+const upgrade17 = document.getElementById("upgrade17");
+const priceTag17 = document.getElementById("priceTag17");
+const up17counter = document.getElementById("up17counter");
+
+upgrade17.addEventListener("click", upRockValueSilver);
+
+let upgrade17price = 10;
+let up17count = 0;
+let rockValueM5 = 1;
+
+function upRockValueSilver() {
+    if(silver >= upgrade17price) {
+        rockValueM5 = rockValueM5 + 1;
+        silver = silver - upgrade17price;
+        upgrade17price = upgrade17price * 1.5;
+        up17count++;
+        updateRockValue();
+        priceTag17.innerHTML = abbreviate(upgrade17price) + " silver";
+        currency6.innerHTML = "silver: " + abbreviate(silver);
+        up17counter.innerHTML = up17count;
+    }
+}
+
 // upgrade 18 stones x2
 
-// upgrade 19 boost progress x2 max 1
+const upgrade18 = document.getElementById("upgrade18");
+const priceTag18 = document.getElementById("priceTag18");
+const up18counter = document.getElementById("up18counter");
+
+upgrade18.addEventListener("click", upStoneValueSilver);
+
+let upgrade18price = 50;
+let up18count = 0;
+let stoneValueM4 = 1;
+
+function upStoneValueSilver() {
+    if(silver >= upgrade18price) {
+        stoneValueM4 = stoneValueM4 + 1;
+        silver = silver - upgrade18price;
+        upgrade18price = upgrade18price * 1.5;
+        up18count++;
+        updateStoneValue();
+        priceTag18.innerHTML = abbreviate(upgrade18price) + " silver";
+        currency6.innerHTML = "silver: " + abbreviate(silver);
+        up18counter.innerHTML = up18count;
+    }
+}
+
+// upgrade 19 charge x2 max 1
+
+const upgrade19 = document.getElementById("upgrade19");
+const priceTag19 = document.getElementById("priceTag19");
+const up19counter = document.getElementById("up19counter");
+
+upgrade19.addEventListener("click", upChargeSilver);
+
+let upgrade19price = 100;
+let up19count = 0;
+
+function upChargeSilver() {
+    if(up19count < 1) {
+        if(silver >= upgrade19price) {
+            chargeAmount++;
+            silver = silver - upgrade19price;
+            up19count++;
+            priceTag17.innerHTML = "MAX";
+            currency6.innerHTML = "silver: " + abbreviate(silver);
+            up19counter.innerHTML = up19count;
+        }
+    }
+}
 
 // gold upgrades:
 
 // upgrade 20 keep autocollect
 
+const upgrade20 = document.getElementById("upgrade20");
+const priceTag20 = document.getElementById("priceTag20");
+const up20counter = document.getElementById("up20counter");
+
+upgrade20.addEventListener("click", upKeepAutoCollect);
+
+let upgrade20price = 1;
+let up20count = 0;
+let keepAutoCollect = false;
+
+function upKeepAutoCollect() {
+    if(up20count < 1) {
+        if(gold >= upgrade20price) {
+            keepAutoCollect = true;
+            gold = gold - upgrade20price;
+            up20count++;
+            priceTag20.innerHTML = "MAX";
+            currency7.innerHTML = "gold: " + abbreviate(gold);
+            up20counter.innerHTML = up20count;
+        }
+    }
+}
+
 // upgrade 21 rock autobuy
+
+const upgrade21 = document.getElementById("upgrade21");
+const priceTag21 = document.getElementById("priceTag21");
+const up21counter = document.getElementById("up21counter");
+
+upgrade21.addEventListener("click", upRockAutobuy);
+
+let upgrade21price = 2;
+let up21count = 0;
+let rockAutobuy = false;
+
+function upRockAutobuy() {
+    if(up21count < 1) {
+        if(gold >= upgrade21price) {
+            rockAutobuy = true;
+            gold = gold - upgrade21price;
+            up21count++;
+            priceTag21.innerHTML = "MAX";
+            currency7.innerHTML = "gold: " + abbreviate(gold);
+            up21counter.innerHTML = up21count;
+        }
+    }
+}
 
 // upgrade 22 stone autobuy
 
+const upgrade22 = document.getElementById("upgrade22");
+const priceTag22 = document.getElementById("priceTag22");
+const up22counter = document.getElementById("up22counter");
+
+upgrade22.addEventListener("click", upStoneAutobuy);
+
+let upgrade22price = 5;
+let up22count = 0;
+let stoneAutobuy = false;
+
+function upStoneAutobuy() {
+    if(up22count < 1) {
+        if(gold >= upgrade22price) {
+            stoneAutobuy = true;
+            gold = gold - upgrade22price;
+            up22count++;
+            priceTag22.innerHTML = "MAX";
+            currency7.innerHTML = "gold: " + abbreviate(gold);
+            up22counter.innerHTML = up22count;
+        }
+    }
+}
+
 // upgrade 23 brick autobuy
+
+const upgrade23 = document.getElementById("upgrade23");
+const priceTag23 = document.getElementById("priceTag23");
+const up23counter = document.getElementById("up23counter");
+
+upgrade23.addEventListener("click", upBrickAutobuy);
+
+let upgrade23price = 15;
+let up23count = 0;
+let brickAutobuy = false;
+
+function upBrickAutobuy() {
+    if(up23count < 1) {
+        if(gold >= upgrade23price) {
+            brickAutobuy = true;
+            gold = gold - upgrade23price;
+            up23count++;
+            priceTag23.innerHTML = "MAX";
+            currency7.innerHTML = "gold: " + abbreviate(gold);
+            up23counter.innerHTML = up23count;
+        }
+    }
+}
 
 // upgrade 24 brick generation
 
+const upgrade24 = document.getElementById("upgrade24");
+const priceTag24 = document.getElementById("priceTag24");
+const up24counter = document.getElementById("up24counter");
+
+upgrade24.addEventListener("click", upBrickGen);
+
+let upgrade24price = 10;
+let up24count = 0;
+let brickGeneration = 0;
+
+function upBrickGen() {
+    if(gold >= upgrade24price) {
+        brickGeneration++;
+        gold = gold - upgrade24price;
+        upgrade24price = upgrade24price * 1.5;
+        up24count++;
+        priceTag24.innerHTML = abbreviate(upgrade24price) + " gold";
+        currency7.innerHTML = "gold: " + abbreviate(gold);
+        up24counter.innerHTML = up24count;
+    }
+}
+
 // upgrade 25 all metals generation (super expensive)
 
+const upgrade25 = document.getElementById("upgrade25");
+const priceTag25 = document.getElementById("priceTag25");
+const up25counter = document.getElementById("up25counter");
 
-// hide locked upgrades and resets
+upgrade25.addEventListener("click", upMetalsGen);
+
+let upgrade25price = 500;
+let up25count = 0;
+let metalsGeneration = 0;
+
+function upMetalsGen() {
+    if(gold >= upgrade24price) {
+        metalsGeneration++;
+        gold = gold - upgrade25price;
+        upgrade25price = upgrade25price * 1.5;
+        up25count++;
+        priceTag25.innerHTML = abbreviate(upgrade25price) + " gold";
+        currency7.innerHTML = "gold: " + abbreviate(gold);
+        up25counter.innerHTML = up25count;
+    }
+}
+
+// autobuy
+
+setInterval(autoBuy, 500);
+
+function autoBuy() {
+    if(rockAutobuy === true) {
+        upRockValue();
+        upStoneChance();
+        upStoneValue();
+    }
+    if(stoneAutobuy === true) {
+        upAutocollectAmount();
+        upRockValueStone();
+        upBricks();
+    }
+    if(brickAutobuy === true) {
+        upRockValueBrick();
+        upStoneValueBrick();
+        upCopperValueBrick();
+    }
+}
+
+// currency generation
+
+setInterval(generateBricks, 1000);
+
+function generateBricks() {
+    if(brickGeneration > 0) {
+        if(bricksValue > 10) {
+            bricks = bricksValue * (brickGeneration / 100);
+            currency4.innerHTML = "bricks: " + abbreviate(bricks);
+        }
+    }
+}
+
+setInterval(generateMetals, 1000)
+
+function generateMetals() {
+    if(metalsGeneration > 0) {
+        if(copperValue > 10) {
+            copper = copperValue * (metalsGeneration / 100);
+            currency5.innerHTML = "copper: " + abbreviate(copper);
+        }
+        if(silverValue > 10) {
+            silver = silverValue * (metalsGeneration / 100);
+            currency6.innerHTML = "silver: " + abbreviate(silver);
+        }
+        if(goldValue > 10) {
+            gold = goldValue * (metalsGeneration / 100);
+            currency6.innerHTML = "gold: " + abbreviate(gold);
+        }
+    }
+}
+
+// hide locked upgrades and stuff
+
 function hideUpgrades() {
     upgrade9.classList.add("hide");
     upgrade10.classList.add("hide");
@@ -696,6 +1106,25 @@ function hideUpgrades() {
     reset3div.classList.add("hide");
     reset4div.classList.add("hide");
     reset5div.classList.add("hide");
+    c1li.style.display = 'none';
+    c2li.style.display = 'none';
+    c3li.style.display = 'none';
+    c4li.style.display = 'none';
+    upgrade12.classList.add("hide");
+    upgrade13.classList.add("hide");
+    upgrade14.classList.add("hide");
+    upgrade15.classList.add("hide");
+    upgrade16.classList.add("hide");
+    upgrade17.classList.add("hide");
+    upgrade18.classList.add("hide");
+    upgrade19.classList.add("hide");
+    upgrade20.classList.add("hide");
+    upgrade21.classList.add("hide");
+    upgrade22.classList.add("hide");
+    upgrade23.classList.add("hide");
+    upgrade24.classList.add("hide");
+    upgrade25.classList.add("hide");
+
 }
 
 hideUpgrades();
