@@ -5,6 +5,8 @@ const charDiv = document.getElementById("charDiv");
 const tutorial = document.getElementById("tutorial");
 const overlay = document.getElementById("overlay");
 const rocknum = document.getElementById("rockNum");
+const saveB = document.getElementById("saveB");
+const clearB = document.getElementById("clearB");
 
 const currency1 = document.getElementById("currency1");
 const currency2 = document.getElementById("currency2");
@@ -87,11 +89,11 @@ function abbreviate(num) {
     } else if (num >= 1000 && num < 1000000) {
         return (num / 1000).toFixed(1) + "K";
     } else if(num >= 1000000 && num < 1000000000) {
-        return (num / 1000000).toFixed(1) +"M"
+        return (num / 1000000).toFixed(1) +"M";
     } else if(num >= 1000000000 && num < 1000000000000) {
-        return (num / 1000000000).toFixed(1) +"B"
+        return (num / 1000000000).toFixed(1) +"B";
     } else {
-        return num.toPrecision(2);
+        return num;
     }
 }
 
@@ -115,8 +117,8 @@ rock.addEventListener("click", getRocks);
 
 function getRocks() {
     if(stoneChance >= Math.floor(Math.random() * 100) + 1) {
-         stones = stones + stoneValue;
-         currency2.innerHTML = "stones: " + abbreviate(stones);
+        stones = stones + stoneValue;
+        currency2.innerHTML = "stones: " + abbreviate(stones);
     }
     if(boost === false) {
         charge = charge + chargeAmount;
@@ -1096,7 +1098,206 @@ function generateMetals() {
     }
 }
 
-// hide locked upgrades and stuff
+// saving and loading
+
+setInterval(function() {console.log(upgrade1price)}, 1000);
+
+setInterval(save, 300000);
+
+saveB.addEventListener("click", save);
+clearB.addEventListener("click", clearLS);
+
+function clearLS() {
+    localStorage.clear();
+}
+
+function save() {
+    localStorage.setItem("saveRocks", JSON.stringify(rocks));
+    localStorage.setItem("saveStones", JSON.stringify(stones));
+    localStorage.setItem("saveEnergystones", JSON.stringify(energyStones));
+    localStorage.setItem("saveBricks", JSON.stringify(bricks));
+    localStorage.setItem("saveCopper", JSON.stringify(copper));
+    localStorage.setItem("saveSilver", JSON.stringify(silver));
+    localStorage.setItem("saveGold", JSON.stringify(gold));
+
+    localStorage.setItem("saveUp1C", JSON.stringify(up1count));
+    localStorage.setItem("saveUp1P", JSON.stringify(upgrade1price));
+    localStorage.setItem("saveUp2C", JSON.stringify(up2count));
+    localStorage.setItem("saveUp2P", JSON.stringify(upgrade2price));
+    localStorage.setItem("saveUp3C", JSON.stringify(up3count));
+    localStorage.setItem("saveUp3P", JSON.stringify(upgrade3price));
+    localStorage.setItem("saveUp4C", JSON.stringify(up4count));
+    localStorage.setItem("saveUp4P", JSON.stringify(upgrade4price));
+    localStorage.setItem("saveUp5C", JSON.stringify(up5count));
+    localStorage.setItem("saveUp5P", JSON.stringify(upgrade5price));
+    localStorage.setItem("saveUp6C", JSON.stringify(up6count));
+    localStorage.setItem("saveUp6P", JSON.stringify(upgrade6price));
+    localStorage.setItem("saveUp7C", JSON.stringify(up7count));
+    localStorage.setItem("saveUp8C", JSON.stringify(up8count));
+    localStorage.setItem("saveUp9C", JSON.stringify(up9count));
+    localStorage.setItem("saveUp9P", JSON.stringify(upgrade9price));
+    localStorage.setItem("saveUp10C", JSON.stringify(up10count));
+    localStorage.setItem("saveUp10P", JSON.stringify(upgrade10price));
+    localStorage.setItem("saveUp11C", JSON.stringify(up11count));
+    localStorage.setItem("saveUp11P", JSON.stringify(upgrade11price));
+    localStorage.setItem("saveUp12C", JSON.stringify(up12count));
+    localStorage.setItem("saveUp12P", JSON.stringify(upgrade12price));
+    localStorage.setItem("saveUp13C", JSON.stringify(up13count));
+    localStorage.setItem("saveUp13P", JSON.stringify(upgrade13price));
+    localStorage.setItem("saveUp14C", JSON.stringify(up14count));
+    localStorage.setItem("saveUp14P", JSON.stringify(upgrade14price));
+    localStorage.setItem("saveUp15C", JSON.stringify(up15count));
+    localStorage.setItem("saveUp15P", JSON.stringify(upgrade15price));
+    localStorage.setItem("saveUp16C", JSON.stringify(up16count));
+    localStorage.setItem("saveUp16P", JSON.stringify(upgrade16price));
+    localStorage.setItem("saveUp17C", JSON.stringify(up17count));
+    localStorage.setItem("saveUp17P", JSON.stringify(upgrade17price));
+    localStorage.setItem("saveUp18C", JSON.stringify(up18count));
+    localStorage.setItem("saveUp18P", JSON.stringify(upgrade18price));
+    localStorage.setItem("saveUp19C", JSON.stringify(up19count));
+    localStorage.setItem("saveUp19P", JSON.stringify(upgrade19price));
+    localStorage.setItem("saveUp20C", JSON.stringify(up20count));
+    localStorage.setItem("saveUp21C", JSON.stringify(up21count));
+    localStorage.setItem("saveUp22C", JSON.stringify(up22count));
+    localStorage.setItem("saveUp23C", JSON.stringify(up23count));
+    localStorage.setItem("saveUp24C", JSON.stringify(up24count));
+    localStorage.setItem("saveUp24P", JSON.stringify(upgrade24price));
+    localStorage.setItem("saveUp25C", JSON.stringify(up25count));
+    localStorage.setItem("saveUp25P", JSON.stringify(upgrade25price));
+
+    localStorage.setItem("saveRockM1", JSON.stringify(rockValueM1));
+    localStorage.setItem("saveRockM2", JSON.stringify(rockValueM2));
+    localStorage.setItem("saveRockM3", JSON.stringify(rockValueM3));
+    localStorage.setItem("saveRockM4", JSON.stringify(rockValueM4));
+    localStorage.setItem("saveRockM5", JSON.stringify(rockValueM5));
+
+    localStorage.setItem("saveStoneM1", JSON.stringify(stoneValueM1));
+    localStorage.setItem("saveStoneM2", JSON.stringify(stoneValueM2));
+    localStorage.setItem("saveStoneM3", JSON.stringify(stoneValueM3));
+    localStorage.setItem("saveStoneM4", JSON.stringify(stoneValueM4));
+
+    localStorage.setItem("saveCopperM1", JSON.stringify(copperValueM1));
+    localStorage.setItem("saveSilverM1", JSON.stringify(silverValueM1));
+    localStorage.setItem("saveGoldM1", JSON.stringify(goldValueM1));
+
+    localStorage.setItem("saveStoneChance", JSON.stringify(stoneChance));
+    localStorage.setItem("saveBricksUnlock", JSON.stringify(bricksUnlock));
+    localStorage.setItem("saveAutocollect", JSON.stringify(autocollectAmount));
+
+    localStorage.setItem("saveBuild", JSON.stringify(build));
+    localStorage.setItem("saveBuildM", JSON.stringify(buildM));
+
+    localStorage.setItem("saveBricksM1", JSON.stringify(brickValueM1));
+    localStorage.setItem("saveBricksM2", JSON.stringify(brickValueM2));
+
+    localStorage.setItem("saveBoostD", JSON.stringify(boostDuration));
+    localStorage.setItem("saveBoostA", JSON.stringify(boostAmount));
+    localStorage.setItem("saveChargeA", JSON.stringify(chargeAmount));
+
+    localStorage.setItem("saveKeepAutoC", JSON.stringify(keepAutoCollect));
+    localStorage.setItem("saveRockAutoBuy", JSON.stringify(rockAutobuy));
+    localStorage.setItem("saveStoneAutobuy", JSON.stringify(stoneAutobuy));
+    localStorage.setItem("saveBrickAutobuy", JSON.stringify(brickAutobuy));
+    localStorage.setItem("saveBrickGen", JSON.stringify(brickGeneration));
+    localStorage.setItem("saveMetalGen", JSON.stringify(metalsGeneration));
+}
+
+// add checking for null
+// add updating html elements
+
+function load() {
+    rocks = JSON.parse(localStorage.getItem("saveRocks"));
+    stones = JSON.parse(localStorage.getItem("saveStones"));
+    energyStones = JSON.parse(localStorage.getItem("saveEnergyStones"));
+    bricks = JSON.parse(localStorage.getItem("saveBricks"));
+    copper = JSON.parse(localStorage.getItem("saveCopper"));
+    silver = JSON.parse(localStorage.getItem("saveSilver"));
+    gold = JSON.parse(localStorage.getItem("saveGold"));
+
+    up1count = JSON.parse(localStorage.getItem("saveUp1C"));
+    upgrade1price = JSON.parse(localStorage.getItem("saveUp1P"));
+    up2count = JSON.parse(localStorage.getItem("saveUp2C"));
+    upgrade2price = JSON.parse(localStorage.getItem("saveUp2P"));
+    up3count = JSON.parse(localStorage.getItem("saveUp3C"));
+    upgrade3price = JSON.parse(localStorage.getItem("saveUp3P"));
+    up4count = JSON.parse(localStorage.getItem("saveUp4C"));
+    upgrade4price = JSON.parse(localStorage.getItem("saveUp4P"));
+    up5count = JSON.parse(localStorage.getItem("saveUp5C"));
+    upgrade5price = JSON.parse(localStorage.getItem("saveUp5P"));
+    up6count = JSON.parse(localStorage.getItem("saveUp6C"));
+    upgrade6price = JSON.parse(localStorage.getItem("saveUp6P"));
+    up7count = JSON.parse(localStorage.getItem("saveUp7C"));
+    up8count = JSON.parse(localStorage.getItem("saveUp8C"));
+    up9count = JSON.parse(localStorage.getItem("saveUp9C"));
+    upgrade9price = JSON.parse(localStorage.getItem("saveUp9P"));
+    up10count = JSON.parse(localStorage.getItem("saveUp10C"));
+    upgrade10price = JSON.parse(localStorage.getItem("saveUp10P"));
+    up11count = JSON.parse(localStorage.getItem("saveUp11C"));
+    upgrade11price = JSON.parse(localStorage.getItem("saveUp11P"));
+    up12count = JSON.parse(localStorage.getItem("saveUp12C"));
+    upgrade12price = JSON.parse(localStorage.getItem("saveUp12P"));
+    up13count = JSON.parse(localStorage.getItem("saveUp13C"));
+    upgrade13price = JSON.parse(localStorage.getItem("saveUp13P"));
+    up14count = JSON.parse(localStorage.getItem("saveUp14C"));
+    upgrade14price = JSON.parse(localStorage.getItem("saveUp14P"));
+    up15count = JSON.parse(localStorage.getItem("saveUp15C"));
+    upgrade15price = JSON.parse(localStorage.getItem("saveUp15P"));
+    up16count = JSON.parse(localStorage.getItem("saveUp16C"));
+    upgrade16price = JSON.parse(localStorage.getItem("saveUp16P"));
+    up17count = JSON.parse(localStorage.getItem("saveUp17C"));
+    upgrade17price = JSON.parse(localStorage.getItem("saveUp17P"));
+    up18count = JSON.parse(localStorage.getItem("saveUp18C"));
+    upgrade18price = JSON.parse(localStorage.getItem("saveUp18P"));
+    up19count = JSON.parse(localStorage.getItem("saveUp19C"));
+    upgrade19price = JSON.parse(localStorage.getItem("saveUp19P"));
+    up20count = JSON.parse(localStorage.getItem("saveUp20C"));
+    up21count = JSON.parse(localStorage.getItem("saveUp21C"));
+    up22count = JSON.parse(localStorage.getItem("saveUp22C"));
+    up23count = JSON.parse(localStorage.getItem("saveUp23C"));
+    up24count = JSON.parse(localStorage.getItem("saveUp24C"));
+    upgrade24price = JSON.parse(localStorage.getItem("saveUp24P"));
+    up25count = JSON.parse(localStorage.getItem("saveUp25C"));
+    upgrade25price = JSON.parse(localStorage.getItem("saveUp25P"));
+
+    rockValueM1 = JSON.parse(localStorage.getItem("saveRockM1"));
+    rockValueM2 = JSON.parse(localStorage.getItem("saveRockM2"));
+    rockValueM3 = JSON.parse(localStorage.getItem("saveRockM3"));
+    rockValueM4 = JSON.parse(localStorage.getItem("saveRockM4"));
+    rockValueM5 = JSON.parse(localStorage.getItem("saveRockM5"));
+
+    stoneValueM1 = JSON.parse(localStorage.getItem("saveStoneM1"));
+    stoneValueM2 = JSON.parse(localStorage.getItem("saveStoneM2"));
+    stoneValueM3 = JSON.parse(localStorage.getItem("saveStoneM3"));
+    stoneValueM4 = JSON.parse(localStorage.getItem("saveStoneM4"));
+
+    copperValueM1 = JSON.parse(localStorage.getItem("saveCopperM1"));
+    silverValueM1 = JSON.parse(localStorage.getItem("saveSilverM1"));
+    goldValueM1 = JSON.parse(localStorage.getItem("saveGoldM1"));
+
+    stoneChance = JSON.parse(localStorage.getItem("saveStoneChance"));
+    bricksUnlock = JSON.parse(localStorage.getItem("saveBricksUnlock"));
+    autocollectAmount = JSON.parse(localStorage.getItem("saveAutocollect"));
+
+    build = JSON.parse(localStorage.getItem("saveBuild"));
+    buildM = JSON.parse(localStorage.getItem("saveBuildM"));
+
+    brickValueM1 = JSON.parse(localStorage.getItem("saveBrickM1"));
+    brickValueM2 = JSON.parse(localStorage.getItem("saveBrickM2"));
+
+    boostAmount = JSON.parse(localStorage.getItem("saveBoostA"));
+    boostDuration = JSON.parse(localStorage.getItem("saveBoostD"));
+    chargeAmount = JSON.parse(localStorage.getItem("saveChargeA"));
+
+    keepAutoCollect = JSON.parse(localStorage.getItem("saveKeepAutoC"));
+    rockAutobuy = JSON.parse(localStorage.getItem("saveRockAutoBuy"));
+    stoneAutobuy = JSON.parse(localStorage.getItem("saveStoneAutobuy"));
+    brickAutobuy = JSON.parse(localStorage.getItem("saveBrickAutobuy"));
+    brickGeneration = JSON.parse(localStorage.getItem("saveBrickGen"));
+    metalsGeneration = JSON.parse(localStorage.getItem("saveMetalGen"));
+}
+
+
+// hide locked upgrades and other stuff
 
 function hideUpgrades() {
     upgrade9.classList.add("hide");
@@ -1124,7 +1325,6 @@ function hideUpgrades() {
     upgrade23.classList.add("hide");
     upgrade24.classList.add("hide");
     upgrade25.classList.add("hide");
-
 }
-
+load();
 hideUpgrades();
