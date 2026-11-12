@@ -92,9 +92,12 @@ function abbreviate(num) {
         return (num / 1000000).toFixed(1) +"M";
     } else if(num >= 1000000000 && num < 1000000000000) {
         return (num / 1000000000).toFixed(1) +"B";
+    } else if(num >= 1000000000000 && num < 1000000000000000) {
+        return (num / 1000000000000).toFixed(1) +"T";
     } else {
         return num;
     }
+    
 }
 
 
@@ -212,7 +215,7 @@ function bricksReset() {
 
         upgrade9.classList.remove("hide");
         upgrade10.classList.remove("hide");
-        upgrade11.classList.remove("hide");
+        
         reset2div.classList.remove("hide");
         c1li.style.display = 'flex';
     }
@@ -247,6 +250,7 @@ function buildReset() {
         c2li.style.display = 'flex';
         c3li.style.display = 'flex';
         c4li.style.display = 'flex';
+        upgrade11.classList.remove("hide");
         upgrade12.classList.remove("hide");
         upgrade13.classList.remove("hide");
         upgrade14.classList.remove("hide");
@@ -429,7 +433,14 @@ function upRockValue() {
     if(rocks >= upgrade1price) {
         rockValueM1 = rockValueM1 * 1.2;
         rocks = rocks - upgrade1price;
-        upgrade1price = upgrade1price * 1.6;
+        if(up1count < 20) {
+            upgrade1price = upgrade1price * 1.6;
+        } else if(up10count < 100){
+            upgrade1price = upgrade1price * 2.5;
+        } else {
+            upgrade1price = upgrade1price * 5;
+        }
+        
         up1count++;
         updateRockValue();
         priceTag1.innerHTML = abbreviate(upgrade1price) + " rocks";
@@ -484,7 +495,12 @@ function upStoneValue() {
     if(rocks >= upgrade3price) {
         stoneValueM1 = stoneValueM1 * 1.5;
         rocks = rocks - upgrade3price;
-        upgrade3price = upgrade3price * 1.85;
+        if(up3count < 20) {
+            upgrade3price = upgrade3price * 1.85;
+        } else {
+            upgrade3price = upgrade3price * 2.5;
+        }
+        
         up3count++;
         updateStoneValue();
         priceTag3.innerHTML = abbreviate(upgrade3price) + " rocks";
@@ -542,7 +558,11 @@ function upRockValueStone() {
     if(stones >= upgrade5price) {
         rockValueM2 = rockValueM2 * 1.5;
         stones = stones - upgrade5price;
-        upgrade5price = upgrade5price * 2.2;
+        if(up5count < 20) {
+            upgrade5price = upgrade5price * 2.2;
+        } else {
+            upgrade5price = upgrade5price * 3;
+        }
         up5count++;
         updateRockValue();
         priceTag5.innerHTML = abbreviate(upgrade5price) + " stones";
@@ -567,7 +587,12 @@ function upBricks() {
     if(stones >= upgrade6price) {
         brickValueM1 = brickValueM1 * 1.5;
         stones = stones - upgrade6price;
-        upgrade6price = upgrade6price * 2.5;
+        if(up6count < 20) {
+            upgrade6price = upgrade6price * 2.5;
+        } else {
+            upgrade6price = upgrade6price * 3;
+        }
+        
         up6count++;
         updateBricks();
         priceTag6.innerHTML = abbreviate(upgrade6price) + " stones";
@@ -632,7 +657,11 @@ function upRockValueBrick() {
     if(bricks >= upgrade9price) {
         rockValueM3 = rockValueM3 + 0.5;
         bricks = bricks - upgrade9price;
-        upgrade9price = upgrade9price * 2.5;
+        if(up9count < 20) {
+            upgrade9price = upgrade9price * 2.5;
+        } else {
+            upgrade9price = upgrade9price * 3;
+        }
         up9count++;
         updateRockValue();
         priceTag9.innerHTML = abbreviate(upgrade9price) + " bricks";
@@ -657,7 +686,11 @@ function upStoneValueBrick() {
     if(bricks >= upgrade10price) {
         stoneValueM2 = stoneValueM2 + 0.5;
         bricks = bricks - upgrade10price;
-        upgrade10price = upgrade10price * 2.5;
+        if(up10count < 20) {
+            upgrade10price = upgrade10price * 2.5;
+        } else {
+            upgrade10price = upgrade10price * 3;
+        }
         up10count++;
         updateStoneValue();
         priceTag10.innerHTML = abbreviate(upgrade10price) + " bricks";
@@ -682,7 +715,11 @@ function upCopperValueBrick() {
     if(bricks >= upgrade11price) {
         copperValueM1 = copperValueM1 + 0.2;
         bricks = bricks - upgrade11price;
-        upgrade11price = upgrade11price * 1.5;
+        if(up10count < 20) {
+            upgrade11price = upgrade11price * 1.5;
+        } else {
+            upgrade11price = upgrade11price * 2.5;
+        }
         up11count++
         updateCopper();
         priceTag11.innerHTML = abbreviate(upgrade11price) + " bricks";
@@ -709,7 +746,11 @@ function upRockValueCopper() {
     if(copper >= upgrade12price) {
         rockValueM4 = rockValueM4 + 0.2;
         copper = copper - upgrade12price;
-        upgrade12price = upgrade12price * 1.5;
+        if(up12count < 20) {
+            upgrade12price = upgrade12price * 2.5;
+        } else {
+            upgrade12price = upgrade12price * 3.5;
+        }
         up12count++;
         updateRockValue();
         priceTag12.innerHTML = abbreviate(upgrade12price) + " copper";
@@ -734,7 +775,11 @@ function upStoneValueCopper() {
     if(copper >= upgrade13price) {
         stoneValueM3 = stoneValueM3 + 0.2;
         copper = copper - upgrade13price;
-        upgrade13price = upgrade13price * 1.5;
+        if(up13count < 20) {
+            upgrade13price = upgrade13price * 2.5;
+        } else {
+            upgrade13price = upgrade13price * 3.5;
+        }
         up13count++;
         updateStoneValue();
         priceTag13.innerHTML = abbreviate(upgrade13price) + " copper";
@@ -759,7 +804,11 @@ function upBrickValueCopper() {
     if(copper >= upgrade14price) {
         brickValueM2 = brickValueM2 + 0.2;
         copper = copper - upgrade14price;
-        upgrade14price = upgrade14price * 1.5;
+        if(up14count < 20) {
+            upgrade14price = upgrade14price * 2.5;
+        } else {
+            upgrade14price = upgrade14price * 3.5;
+        }
         up14count++;
         updateBricks();
         priceTag14.innerHTML = abbreviate(upgrade14price) + " copper";
@@ -784,7 +833,7 @@ function upSilverValueCopper() {
     if(copper >= upgrade15price) {
         silverValueM1 = silverValueM1 + 0.2;
         copper = copper - upgrade15price;
-        upgrade15price = upgrade15price * 1.5;
+        upgrade15price = upgrade15price * 2.5;
         up15count++;
         updateSilver();
         priceTag15.innerHTML = abbreviate(upgrade15price) + " copper";
@@ -809,7 +858,7 @@ function upGoldValueCopper() {
     if(copper >= upgrade16price) {
         goldValueM1 = goldValueM1 + 0.2;
         copper = copper - upgrade16price;
-        upgrade16price = upgrade16price * 1.5;
+        upgrade16price = upgrade16price * 2.5;
         up16count++;
         updateGold();
         priceTag16.innerHTML = abbreviate(upgrade16price) + " copper";
@@ -836,7 +885,12 @@ function upRockValueSilver() {
     if(silver >= upgrade17price) {
         rockValueM5 = rockValueM5 + 1;
         silver = silver - upgrade17price;
-        upgrade17price = upgrade17price * 1.5;
+        if(up17count < 20) {
+            upgrade17price = upgrade17price * 2.2;
+        } else {
+            upgrade17price = upgrade17price * 3.5;
+        }
+        
         up17count++;
         updateRockValue();
         priceTag17.innerHTML = abbreviate(upgrade17price) + " silver";
@@ -861,7 +915,11 @@ function upStoneValueSilver() {
     if(silver >= upgrade18price) {
         stoneValueM4 = stoneValueM4 + 1;
         silver = silver - upgrade18price;
-        upgrade18price = upgrade18price * 1.5;
+        if(up18count < 20) {
+            upgrade18price = upgrade18price * 2.2;
+        } else {
+            upgrade18price = upgrade18price * 3.5;
+        }
         up18count++;
         updateStoneValue();
         priceTag18.innerHTML = abbreviate(upgrade18price) + " silver";
@@ -887,7 +945,7 @@ function upChargeSilver() {
             chargeAmount++;
             silver = silver - upgrade19price;
             up19count++;
-            priceTag17.innerHTML = "MAX";
+            priceTag19.innerHTML = "MAX";
             currency6.innerHTML = "silver: " + abbreviate(silver);
             up19counter.innerHTML = up19count;
         }
@@ -904,7 +962,7 @@ const up20counter = document.getElementById("up20counter");
 
 upgrade20.addEventListener("click", upKeepAutoCollect);
 
-let upgrade20price = 1;
+let upgrade20price = 5;
 let up20count = 0;
 let keepAutoCollect = false;
 
@@ -929,7 +987,7 @@ const up21counter = document.getElementById("up21counter");
 
 upgrade21.addEventListener("click", upRockAutobuy);
 
-let upgrade21price = 2;
+let upgrade21price = 10;
 let up21count = 0;
 let rockAutobuy = false;
 
@@ -954,7 +1012,7 @@ const up22counter = document.getElementById("up22counter");
 
 upgrade22.addEventListener("click", upStoneAutobuy);
 
-let upgrade22price = 5;
+let upgrade22price = 20;
 let up22count = 0;
 let stoneAutobuy = false;
 
@@ -979,7 +1037,7 @@ const up23counter = document.getElementById("up23counter");
 
 upgrade23.addEventListener("click", upBrickAutobuy);
 
-let upgrade23price = 15;
+let upgrade23price = 100;
 let up23count = 0;
 let brickAutobuy = false;
 
@@ -1004,7 +1062,7 @@ const up24counter = document.getElementById("up24counter");
 
 upgrade24.addEventListener("click", upBrickGen);
 
-let upgrade24price = 10;
+let upgrade24price = 500;
 let up24count = 0;
 let brickGeneration = 0;
 
@@ -1012,7 +1070,7 @@ function upBrickGen() {
     if(gold >= upgrade24price) {
         brickGeneration++;
         gold = gold - upgrade24price;
-        upgrade24price = upgrade24price * 1.5;
+        upgrade24price = upgrade24price * 2.2;
         up24count++;
         priceTag24.innerHTML = abbreviate(upgrade24price) + " gold";
         currency7.innerHTML = "gold: " + abbreviate(gold);
@@ -1028,7 +1086,7 @@ const up25counter = document.getElementById("up25counter");
 
 upgrade25.addEventListener("click", upMetalsGen);
 
-let upgrade25price = 500;
+let upgrade25price = 10000;
 let up25count = 0;
 let metalsGeneration = 0;
 
@@ -1036,7 +1094,7 @@ function upMetalsGen() {
     if(gold >= upgrade24price) {
         metalsGeneration++;
         gold = gold - upgrade25price;
-        upgrade25price = upgrade25price * 1.5;
+        upgrade25price = upgrade25price * 2.2;
         up25count++;
         priceTag25.innerHTML = abbreviate(upgrade25price) + " gold";
         currency7.innerHTML = "gold: " + abbreviate(gold);
@@ -1073,7 +1131,7 @@ setInterval(generateBricks, 1000);
 function generateBricks() {
     if(brickGeneration > 0) {
         if(bricksValue > 10) {
-            bricks = bricksValue * (brickGeneration / 100);
+            bricks = bricks + bricksValue * (brickGeneration / 100);
             currency4.innerHTML = "bricks: " + abbreviate(bricks);
         }
     }
@@ -1084,22 +1142,22 @@ setInterval(generateMetals, 1000)
 function generateMetals() {
     if(metalsGeneration > 0) {
         if(copperValue > 10) {
-            copper = copperValue * (metalsGeneration / 100);
+            copper = copper + copperValue * (metalsGeneration / 100);
             currency5.innerHTML = "copper: " + abbreviate(copper);
         }
         if(silverValue > 10) {
-            silver = silverValue * (metalsGeneration / 100);
+            silver = silver + silverValue * (metalsGeneration / 100);
             currency6.innerHTML = "silver: " + abbreviate(silver);
         }
         if(goldValue > 10) {
-            gold = goldValue * (metalsGeneration / 100);
-            currency6.innerHTML = "gold: " + abbreviate(gold);
+            gold = gold + goldValue * (metalsGeneration / 100);
+            currency7.innerHTML = "gold: " + abbreviate(gold);
         }
     }
 }
 
 // saving and loading
-
+/*
 setInterval(function() {console.log(upgrade1price)}, 1000);
 
 setInterval(save, 300000);
@@ -1295,7 +1353,7 @@ function load() {
     brickGeneration = JSON.parse(localStorage.getItem("saveBrickGen"));
     metalsGeneration = JSON.parse(localStorage.getItem("saveMetalGen"));
 }
-
+*/
 
 // hide locked upgrades and other stuff
 
@@ -1326,5 +1384,6 @@ function hideUpgrades() {
     upgrade24.classList.add("hide");
     upgrade25.classList.add("hide");
 }
-load();
+
+//load();
 hideUpgrades();
